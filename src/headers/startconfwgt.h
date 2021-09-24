@@ -8,8 +8,8 @@ class StartConfWgt : public QWidget
 {
     Q_OBJECT
 private:
-    QString flexChoose;
-    QString byzonChoose;
+    QLineEdit *flexPath;
+    QLineEdit *byzonPath;
 public:
     explicit StartConfWgt(QWidget *parent = nullptr);
     ~StartConfWgt();
