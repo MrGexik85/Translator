@@ -19,19 +19,22 @@ MainWindow::~MainWindow()
 void MainWindow::startCompilerErrorMsg() {
     QMessageBox msgBox(QMessageBox::Warning,
                        "Ошибка компиляции",
-                       "Убедитесь в правильности выбранных файлов flex и byzon",
+                       "Убедитесь в правильности выбранных файлов flex и bison",
                        QFlag(0), this);
     msgBox.addButton("&Выбрать снова",
                      QMessageBox::AcceptRole);
     msgBox.exec();
 }
 
-bool MainWindow::compileFlexAndByzon() {
+bool MainWindow::compileFlexAndBison() {
     /*
     *   Compile flex and byzon source files to tmp/translator.exe
     *
     *   return: bool (success)
     */
+
+    //mkdir tmp
+    //flex -o./tmp/flexout.yy.c *flexpath*
 
     return false;
 }
@@ -39,19 +42,19 @@ bool MainWindow::compileFlexAndByzon() {
 
 /* SLOTS */
 
-void MainWindow::startCodeEnv(const QString& flexSrc, const QString& bznSrc) {
+void MainWindow::startCodeEnv(const QString& flexSrc, const QString& bisonSrc) {
     /*
     *   Slot for change files choose widget to text enviroment
     *
-    *   flexSrc and bznSrc compile to tmp/translator.exe
+    *   flexSrc and bisonSrc compile to ./tmp/translator.exe
     */
 
     this->flexSrcFile = flexSrc;
-    this->byzonSrcFile = bznSrc;
-    qDebug() << "mainwindow:: get flex,byzon files path: flex file:" << flexSrc << " byzon file: " << bznSrc;
+    this->bisonSrcFile = bisonSrc;
+    qDebug() << "mainwindow:: get flex,bison files path: flex file:" << flexSrc << " bison file: " << bisonSrc;
 
-    /* Compile flex and byzon source files */
-    if(compileFlexAndByzon() == false){
+    /* Compile flex and bison source files */
+    if(compileFlexAndBison() == false){
         qDebug("mainWindow: Cannot compile source files");
         startCompilerErrorMsg();
         return;

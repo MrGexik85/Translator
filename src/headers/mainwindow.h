@@ -15,9 +15,9 @@ private:
     CodeEnvWgt *codeEnvWgt = nullptr;
 
     QString flexSrcFile;
-    QString byzonSrcFile;
+    QString bisonSrcFile;
 
-bool compileFlexAndByzon();
+bool compileFlexAndBison();
 void startCompilerErrorMsg();
 public:
     MainWindow(QWidget *parent = nullptr);
@@ -25,6 +25,6 @@ public:
 
     friend class CodeEnvWgt;
 private slots:
-    void startCodeEnv(const QString&, const QString&);
+    void startCodeEnv(const QString& flexPath, const QString& bisonPath);
 };
 #endif // MAINWINDOW_H

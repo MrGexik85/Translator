@@ -10,14 +10,14 @@ class StartConfWgt : public QWidget
     Q_OBJECT
 private:
     FileInputWgt *flexPath;
-    FileInputWgt *byzonPath;
+    FileInputWgt *bisonPath;
 
 public:
     explicit StartConfWgt(QWidget *parent = nullptr);
     ~StartConfWgt();
 
 signals:
-    void startBtnClicked(const QString&, const QString&);
+    void startBtnClicked(const QString& flexPath, const QString& bisonPath);
 
 private slots:
     void sendFilesSrc();
