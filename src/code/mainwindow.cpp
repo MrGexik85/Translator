@@ -22,6 +22,8 @@ MainWindow::~MainWindow()
 void MainWindow::startCodeEnv(const QString& flexSrc, const QString& bznSrc) {
     /*
     *   Slot for change files choose widget to text enviroment
+    *
+    *   flexSrc and bznSrc compile to tmp/translator.exe
     */
     this->flexSrcFile = flexSrc;
     this->byzonSrcFile = bznSrc;
