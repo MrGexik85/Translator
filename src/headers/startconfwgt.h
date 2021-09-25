@@ -3,13 +3,15 @@
 
 #include <QWidget>
 #include <QtWidgets>
+#include "fileinputwgt.h"
 
 class StartConfWgt : public QWidget
 {
     Q_OBJECT
 private:
-    QLineEdit *flexPath;
-    QLineEdit *byzonPath;
+    FileInputWgt *flexPath;
+    FileInputWgt *byzonPath;
+
 public:
     explicit StartConfWgt(QWidget *parent = nullptr);
     ~StartConfWgt();
