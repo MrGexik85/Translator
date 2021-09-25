@@ -16,6 +16,15 @@ MainWindow::~MainWindow()
     qDebug("mainwindow: success destructor");
 }
 
+bool MainWindow::compile() {
+    /*
+    *
+    *
+    *   return: bool (success)
+    */
+    return false;
+}
+
 
 /* SLOTS */
 
@@ -28,6 +37,19 @@ void MainWindow::startCodeEnv(const QString& flexSrc, const QString& bznSrc) {
     this->flexSrcFile = flexSrc;
     this->byzonSrcFile = bznSrc;
     qDebug() << "mainwindow:: get flex,byzon files path: flex file:" << flexSrc << " byzon file: " << bznSrc;
+
+    /* Compile flex and byzon source files */
+    if(compile() == false){
+        qDebug("mainWindow: Cannot compile source files");
+        QMessageBox msgBox(QMessageBox::Warning,
+                           "Ошибка компиляции",
+                           "Убедитесь в правильности выбранных файлов flex и byzon",
+                           QFlag(0), this);
+        msgBox.addButton("&Выбрать снова",
+                         QMessageBox::AcceptRole);
+        msgBox.exec();
+        return;
+    }
 
     codeEnvWgt = new CodeEnvWgt(this);
     this->resize(1280, 720);

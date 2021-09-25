@@ -16,6 +16,8 @@ private:
 
     QString flexSrcFile;
     QString byzonSrcFile;
+
+bool compile();
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
