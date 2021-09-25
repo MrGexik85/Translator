@@ -12,6 +12,7 @@ StartConfWgt::StartConfWgt(QWidget *parent) : QWidget(parent)
     layout->addWidget(flexPath);
     layout->addWidget(byzonPath);
     layout->addWidget(sendBtn);
+
     this->setLayout(layout);
 
     qDebug("startConfWgt: success constructor");

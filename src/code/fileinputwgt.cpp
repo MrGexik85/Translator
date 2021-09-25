@@ -42,7 +42,7 @@ QString FileInputWgt::getCurrentPath() {
 /* SLOTS */
 void FileInputWgt::onChooseFileBtnClicked(){
     /*
-    *
+    *   Open dialog window for choose file with FileInputWgt->filesFilter
     */
     qDebug("fileInputWgt: Choose file btn clicked");
     QString file = QFileDialog::getOpenFileName(this, "Choose file", "./", filesFilter);
