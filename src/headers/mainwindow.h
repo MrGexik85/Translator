@@ -17,7 +17,8 @@ private:
     QString flexSrcFile;
     QString byzonSrcFile;
 
-bool compile();
+bool compileFlexAndByzon();
+void startCompilerErrorMsg();
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();

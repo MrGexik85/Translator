@@ -16,12 +16,23 @@ MainWindow::~MainWindow()
     qDebug("mainwindow: success destructor");
 }
 
-bool MainWindow::compile() {
+void MainWindow::startCompilerErrorMsg() {
+    QMessageBox msgBox(QMessageBox::Warning,
+                       "Ошибка компиляции",
+                       "Убедитесь в правильности выбранных файлов flex и byzon",
+                       QFlag(0), this);
+    msgBox.addButton("&Выбрать снова",
+                     QMessageBox::AcceptRole);
+    msgBox.exec();
+}
+
+bool MainWindow::compileFlexAndByzon() {
     /*
-    *
+    *   Compile flex and byzon source files to tmp/translator.exe
     *
     *   return: bool (success)
     */
+
     return false;
 }
 
@@ -34,20 +45,15 @@ void MainWindow::startCodeEnv(const QString& flexSrc, const QString& bznSrc) {
     *
     *   flexSrc and bznSrc compile to tmp/translator.exe
     */
+
     this->flexSrcFile = flexSrc;
     this->byzonSrcFile = bznSrc;
     qDebug() << "mainwindow:: get flex,byzon files path: flex file:" << flexSrc << " byzon file: " << bznSrc;
 
     /* Compile flex and byzon source files */
-    if(compile() == false){
+    if(compileFlexAndByzon() == false){
         qDebug("mainWindow: Cannot compile source files");
-        QMessageBox msgBox(QMessageBox::Warning,
-                           "Ошибка компиляции",
-                           "Убедитесь в правильности выбранных файлов flex и byzon",
-                           QFlag(0), this);
-        msgBox.addButton("&Выбрать снова",
-                         QMessageBox::AcceptRole);
-        msgBox.exec();
+        startCompilerErrorMsg();
         return;
     }
 
