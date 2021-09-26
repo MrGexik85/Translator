@@ -38,6 +38,8 @@ bool MainWindow::compileFlexAndBison(const QString &flexSrc, const QString &biso
     *
     *   return: bool (success)
     */
+    this->setEnabled(false);
+    QApplication::setOverrideCursor(Qt::WaitCursor);
 
     QDir dir;
     dir.mkdir("tmp");
@@ -45,18 +47,24 @@ bool MainWindow::compileFlexAndBison(const QString &flexSrc, const QString &biso
 
     bool bOk = runProcess("flex -o./tmp/lex.yy.c " + flexSrc);
     if(bOk == false) {
+        this->setEnabled(true);
+        QApplication::restoreOverrideCursor();
         qDebug() << "mainWindow(compileFlexAndBison): fail compile flex";
         return false;
     }
 
     bOk &= runProcess("bison -d --defines=./tmp/parser.tab.h --output=./tmp/parser.tab.c " + bisonSrc);
     if(bOk == false) {
+        this->setEnabled(true);
+        QApplication::restoreOverrideCursor();
         qDebug() << "mainWindow(compileFlexAndBison): fail compile bison";
         return false;
     }
 
     bOk &= runProcess("gcc -o ./tmp/translator.exe ./tmp/lex.yy.c ./tmp/parser.tab.c");
     if(bOk == false) {
+        this->setEnabled(true);
+        QApplication::restoreOverrideCursor();
         qDebug() << "mainWindow(compileFlexAndBison): fail compile translator.exe";
         return false;
     }
@@ -70,6 +78,8 @@ bool MainWindow::compileFlexAndBison(const QString &flexSrc, const QString &biso
         dir.remove(dirFile);
     }
 
+    this->setEnabled(true);
+    QApplication::restoreOverrideCursor();
     return bOk;
 }
 
