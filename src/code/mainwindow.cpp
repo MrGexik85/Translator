@@ -101,11 +101,13 @@ bool MainWindow::runProcess(QString command){
     QProcess process;
     process.start(processName, args);
     bool bOk = process.waitForFinished();
+    int exitCode = process.exitCode();
 
     qDebug() << "mainWindow(runProcess): errout for" << processName << "process:" << process.readAllStandardError();
     qDebug() << "mainWindow(runProcess): stdout for" << processName << "process:" << process.readAllStandardOutput();
+    qDebug() << "mainWindow(runProcess): stdout for" << processName << "process:" << exitCode;
 
-    bOk &= (process.exitCode() == 0);
+    bOk &= (exitCode == 0);
     return bOk;
 }
 
