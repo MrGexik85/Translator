@@ -78,6 +78,21 @@ void CodeEnvWgt::translate() {
      *
      *   return: void
     */
+    pTranslateBtn->setEnabled(false);
+    QApplication::setOverrideCursor(Qt::WaitCursor);
+
+    QProcess translatorProc;
+    translatorProc.start("./tmp/translator.exe", QStringList());
+    translatorProc.write(pTxtEditSource->toPlainText().toStdString().c_str());
+    translatorProc.closeWriteChannel();
+    translatorProc.waitForReadyRead();
+    QString res = translatorProc.readAllStandardOutput();
+    qDebug() << translatorProc.readAllStandardError();
+    qDebug() << translatorProc.exitCode();
+    pTxtEditResult->setText(res);
+
+    QApplication::restoreOverrideCursor();
+    pTranslateBtn->setEnabled(true);
 
     qDebug() << "codeEnvWgt(translate): success translate";
 }
