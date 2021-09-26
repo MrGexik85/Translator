@@ -14,10 +14,10 @@ private:
     StartConfWgt *startCongWgt = nullptr;
     CodeEnvWgt *codeEnvWgt = nullptr;
 
-    QString flexSrcFile;
-    QString bisonSrcFile;
+    QString translatorFile = "";
 
-bool compileFlexAndBison();
+bool runProcess(QString command);
+bool compileFlexAndBison(const QString &flexSrc, const QString &bisonSrc);
 void startCompilerErrorMsg();
 public:
     MainWindow(QWidget *parent = nullptr);
