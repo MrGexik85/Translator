@@ -24,8 +24,9 @@ CodeEnvWgt::~CodeEnvWgt() {
 
 QLayout* CodeEnvWgt::getSrcTextLayout() {
     /*
+     *  Init and return layout with TextEdit field and 2 buttons (Save and Open)
      *
-     *
+     *  return: QLayout*
     */
 
     pOpenSourceBtn = new QPushButton("Открыть", this);
@@ -43,24 +44,27 @@ QLayout* CodeEnvWgt::getSrcTextLayout() {
     layout->addWidget(pTxtEditSource);
     layout->addLayout(btnLayout);
 
+    qDebug() << "CodeEnvWgt(getSrcTextLayout): success create layout for source code";
     return layout;
 }
 
 QLayout* CodeEnvWgt::getResTextLayout() {
     /*
+     *  Init and return layout with TextEdit field and button (Save)
      *
+     *  return: QLayout*
     */
 
     pSaveResultBtn = new QPushButton("Сохранить", this);
     pTxtEditResult = new QTextEdit("Результат трансляции", this);
     pTxtEditResult->setFont(QFont("Lucida Console", 12));
-    pTxtEditResult->setTabStopDistance(
-        QFontMetricsF(pTxtEditSource->font()).horizontalAdvance(' ') * 4);
+    pTxtEditResult->setTabStopDistance(QFontMetricsF(pTxtEditSource->font()).horizontalAdvance(' ') * 4);
 
     QVBoxLayout *layout = new QVBoxLayout();
     layout->addWidget(pTxtEditResult);
     layout->addWidget(pSaveResultBtn);
 
+    qDebug() << "CodeEnvWgt(getSrcTextLayout): success create layout for result code";
     return layout;
 
 }
@@ -68,8 +72,11 @@ QLayout* CodeEnvWgt::getResTextLayout() {
 
 /* SLOTS */
 void CodeEnvWgt::translate() {
-    /* Взять текст из source - прогнать через процесс translator.exe
-    *   -> Вставить результать стандартонго вывода процесса в Result
+    /*
+     * Get text from textEditSource -> make QProcess "translator.exe" with gotten text as argument
+     *   -> set stdout from QProcess to textEditResult
+     *
+     *   return: void
     */
 
     qDebug() << "codeEnvWgt(translate): success translate";
